@@ -11,22 +11,20 @@ void convert_distance(void);
 void convert_weight(void);
 void convert_speed(void);
 
-int get_validated_int(int min, int max, const char *prompt, const char *err);
 
 int main(void) {
     int choice;
 
     do {
-        printf("\n= Unit Conversion Station =\n");
+        printf("\n= Unit Conversion Statccion =\n");
         printf("1. Temperature  (Celsius <-> Fahrenheit)\n");
         printf("2. Distance     (Miles <-> Kilometers)\n");
         printf("3. Weight       (Pounds <-> Kilograms)\n");
         printf("4. Speed        (MPH <-> KPH)\n");
         printf("5. Quit\n");
 
-        choice = get_validated_int(1, 5,
-            "Enter choice (1-5): ",
-            "Invalid choice. Try again.");
+        fscanf(stdin, "%d ", &choice);
+        printf("Test: %d\n", choice);
 
         switch (choice) {
             case 1: convert_temperature(); break;
