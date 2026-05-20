@@ -11,8 +11,10 @@ void convert_distance(void);
 void convert_weight(void);
 void convert_speed(void);
 
+int get_validated_int(int min, int max, const char *prompt, const char *err);
+
 int main(void) {
-    int choice = 0;
+    int choice;
 
     do {
         printf("\n= Unit Conversion Station =\n");
@@ -22,8 +24,9 @@ int main(void) {
         printf("4. Speed        (MPH <-> KPH)\n");
         printf("5. Quit\n");
 
-        fscanf(stdin, "%d ", &choice);
-        printf("test: %d\n", choice);
+        choice = get_validated_int(1, 5,
+            "Enter choice (1-5): ",
+            "Invalid choice. Try again.");
 
         switch (choice) {
             case 1: convert_temperature(); break;
@@ -31,10 +34,9 @@ int main(void) {
             case 3: convert_weight();      break;
             case 4: convert_speed();       break;
             case 5: printf("Goodbye!\n");  break;
-            default: printf("Invalid choice. Try again.\n"); break;
         }
 
-    } while ((choice != 5)||(choice > 6)||(choice < 0));
+    } while (choice != 5);
 
     return 0;
 }
@@ -42,14 +44,6 @@ int main(void) {
 /* TODO: implement the functions below */
 
 void convert_temperature(void) {
-    int selection = 0;
-    printf("\n--- Temperature ---\n");
-    printf("1. Celsius to Fahrenheit\n");
-    printf("2. Fahrenheit to Celsius\n");
-    printf("Enter direction (1-2): \n");
-
-    fscanf(stdin, "%d ", &selection);
-
     // Prompt whether to convert degrees Fahrenheit to Celsius or vice-versa
     // Calculate the value
     // Print the value and its unit 
