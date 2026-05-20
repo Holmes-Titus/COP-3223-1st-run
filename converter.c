@@ -12,7 +12,7 @@ void convert_weight(void);
 void convert_speed(void);
 
 int main(void) {
-    int choice;
+    int choice = 0;
 
     do {
         printf("\n= Unit Conversion Station =\n");
@@ -23,7 +23,7 @@ int main(void) {
         printf("5. Quit\n");
 
         choice = fscanf(stdin, "%d ", &choice);
-        printf(choice);
+        printf("test: %d\n", choice);
 
         switch (choice) {
             case 1: convert_temperature(); break;
