@@ -31,10 +31,10 @@ int main(void) {
             case 3: convert_weight();      break;
             case 4: convert_speed();       break;
             case 5: printf("Goodbye!\n");  break;
-            default: printf("Invalid choice. Try again.\n");
+            default: printf("Invalid choice. Try again.\n"); break;
         }
 
-    } while ((choice != 5)&&(0 < choice < 6));
+    } while ((choice != 5)||(choice > 6)||(choice < 0));
 
     return 0;
 }
