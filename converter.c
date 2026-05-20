@@ -15,7 +15,6 @@ int main(void) {
     int choice = 0;
 
     do {
-        fscanf(stdin, "%d ", &choice);
         printf("\n= Unit Conversion Station =\n");
         printf("1. Temperature  (Celsius <-> Fahrenheit)\n");
         printf("2. Distance     (Miles <-> Kilometers)\n");
@@ -23,7 +22,7 @@ int main(void) {
         printf("4. Speed        (MPH <-> KPH)\n");
         printf("5. Quit\n");
 
-        
+        fscanf(stdin, "%d ", &choice);
         printf("test: %d\n", choice);
 
         switch (choice) {
