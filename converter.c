@@ -14,9 +14,8 @@ void convert_speed(void);
 
 int main(void) {
     int choice;
-    int ch = 0;
     do {
-        printf("\n= Unit Conversion Statccion =\n");
+        printf("\n= Unit Conversion Station =\n");
         printf("1. Temperature  (Celsius <-> Fahrenheit)\n");
         printf("2. Distance     (Miles <-> Kilometers)\n");
         printf("3. Weight       (Pounds <-> Kilograms)\n");
@@ -24,8 +23,7 @@ int main(void) {
         printf("5. Quit\n");
 
         fscanf(stdin, "%d ", &choice);
-        while ((ch = getchar()) != '\n' && ch != EOF) { // flush the rest of the input line
-}
+        
         printf("Test: %d\n", choice);
 
         switch (choice) {
