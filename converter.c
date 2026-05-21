@@ -22,8 +22,7 @@ int main(void) {
         printf("4. Speed        (MPH <-> KPH)\n");
         printf("5. Quit\n");
 
-        fscanf(stdin, "%d ", &choice);
-        
+        fscanf(stdin, "%d", &choice);
         printf("Test: %d\n", choice);
 
         switch (choice) {
