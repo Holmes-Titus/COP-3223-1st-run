@@ -11,9 +11,11 @@ void convert_distance(void);
 void convert_weight(void);
 void convert_speed(void);
 
+int get_validated_int(int min, int max, const char *prompt, const char *err);
 
 int main(void) {
     int choice;
+
     do {
         printf("\n= Unit Conversion Station =\n");
         printf("1. Temperature  (Celsius <-> Fahrenheit)\n");
@@ -21,9 +23,9 @@ int main(void) {
         printf("3. Weight       (Pounds <-> Kilograms)\n");
         printf("4. Speed        (MPH <-> KPH)\n");
         printf("5. Quit\n");
-
-        fscanf(stdin, "%d", &choice);
-        printf("Test: %d\n", choice);
+        
+        choice = get_validated_int(1, 5, "Enter choice (1-5): ", "Invalid choice. Try again.");
+        
 
         switch (choice) {
             case 1: convert_temperature(); break;
@@ -40,22 +42,104 @@ int main(void) {
 
 /* TODO: implement the functions below */
 
+int get_validated_int(int min, int max, const char *prompt, const char *err){
+    int pick;
+
+    do {
+    printf("%s", prompt);
+    fscanf(stdin, "%d", &pick);
+    if (pick < min || pick > max){
+        printf("%s\n", err);
+    }
+    } while (pick < min || pick > max);
+    return pick;
+}
+
 void convert_temperature(void) {
-    // Prompt whether to convert degrees Fahrenheit to Celsius or vice-versa
-    // Calculate the value
-    // Print the value and its unit 
+    
+    int selection_T;
+    float temp1;
+    float temp2;
+
+    printf("\n--- Temperature ---\n");
+    printf("1. Celsius to Fahrenheit\n");
+    printf("2. Fahrenheit to Celsius\n");
+
+    selection_T = get_validated_int(1, 2, "Enter choice (1-2): ", "Invalid direction. Try again."); // Prompt whether to convert degrees Fahrenheit to Celsius or vice-versa
+    
+    switch (selection_T) {
+        case 1: 
+            printf("\nEnter temperature in Celsius: "); 
+            fscanf(stdin, "%f", &temp1);
+            temp2 = temp1 * C_TO_F_SCALE + C_TO_F_OFFSET;   // Calculate the value
+            printf("%.2f°C = %.2f°F\n",temp1,temp2);    // Print the value and its unit
+                break;
+        default: 
+            printf("\nEnter temperature in Fahrenheit: "); 
+            fscanf(stdin, "%f", &temp1);
+            temp2 = (temp1 - C_TO_F_OFFSET) / C_TO_F_SCALE; // Calculate the value
+            printf("%.2f°F = %.2f°C\n",temp1,temp2);    // Print the value and its unit
+                break;
+    }
+ 
 };
 
 void convert_distance(void) {
-    // Prompt whether to convert Miles to Kilometers or vice-versa
-    // Calculate the value
-    // Print the value and its unit 
+    
+    int selection_D;
+    float dist1;
+    float dist2;
+
+    printf("\n--- Distance ---\n");
+    printf("1. Miles to Kilometers\n");
+    printf("2. Kilometers to Miles\n");
+
+    selection_D = get_validated_int(1, 2, "Enter choice (1-2): ", "Invalid direction. Try again."); // Prompt whether to convert Miles to Kilometers or vice-versa
+    
+    switch (selection_D) {
+        case 1: 
+            printf("\nEnter distance in miles: "); 
+            fscanf(stdin, "%f", &dist1);
+            dist2 = dist1 * MI_TO_KM;   // Calculate the value
+            printf("%.2f miles = %.2f km\n",dist1,dist2);    // Print the value and its unit
+                break;
+        default: 
+            printf("\nEnter distance in kilometers: "); 
+            fscanf(stdin, "%f", &dist1);
+            dist2 = dist1  / MI_TO_KM; // Calculate the value
+            printf("%.2f km = %.2f miles\n",dist1,dist2);    // Print the value and its unit
+                break;
+    }
+
 };
 
 void convert_weight(void) {
-    // Prompt whether to convert Pounds to Kilograms or vice-versa
-    // Calculate the value
-    // Print the value and its unit 
+    
+    int selection_W;
+    float weight1;
+    float weight2;
+
+    printf("\n--- Weight ---\n");
+    printf("1. Pounds to Kilograms\n");
+    printf("2. Kilograms to Pounds\n");
+
+    selection_W = get_validated_int(1, 2, "Enter choice (1-2): ", "Invalid direction. Try again."); // Prompt whether to convert Miles to Kilometers or vice-versa
+    
+    switch (selection_W) {
+        case 1: 
+            printf("\nEnter weight in pounds: "); 
+            fscanf(stdin, "%f", &weight1);
+            weight2 = weight1 * LB_TO_KG;   // Calculate the value
+            printf("%.2f lbs = %.2f kg\n",weight1,weight2);    // Print the value and its unit
+                break;
+        default: 
+            printf("\nEnter weigth in kilograms: "); 
+            fscanf(stdin, "%f", &weight1);
+            weight2 = weight1  / LB_TO_KG; // Calculate the value
+            printf("%.2f kg = %.2f lbs\n",weight1,weight2);    // Print the value and its unit
+                break;
+    }
+
 };
 
 void convert_speed(void) {
