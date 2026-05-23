@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+//Titus Holmes: Week 2 Assignment — Unit Conversion Station
+
 /* Conversion constants */
 const double C_TO_F_SCALE  = 9.0 / 5.0;
 const double C_TO_F_OFFSET = 32.0;
