@@ -5,6 +5,10 @@
 #define COMBAT_H    //then now define it
 //combat.h becomes COMBAT_H
 
+//.o is an object file
+//gcc combat.o main.o -o game       //This makes a game file using combat and main c files
+
+
 int test_function(int hit1, int hit2); // prototype or decleration (names of variables are optional but preferred)
 
 int score = 0; //score is a glbal variable that can be modified anywhere
