@@ -1,4 +1,6 @@
 #include "combat.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 double calculate_damage(int attack, int defence, int bravery) {
 
