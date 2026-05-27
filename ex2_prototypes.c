@@ -10,12 +10,12 @@ int main(void){
     int x = 7;
     int y = 0;
     int z = 10;
-    printf("The value is: %d \n", clamp(x,y,z));
+    printf("The value is: %d\n", clamp(x,y,z));
     int a = -4;
-    printf("The absolute value of a is: %d \n",absolute_value(a));
+    printf("The absolute value of a is: %d\n",absolute_value(a));
     double temp = 100;
-    printf("The temperature in Fahrenheit is: %lf \n",celsius_to_fahrenheit(temp));
-    printf("This shows whether x is even: %d \n", x);
+    printf("The temperature in Fahrenheit is: %lf\n",celsius_to_fahrenheit(temp));
+    printf("This shows whether x is even: %d\n", x);
 
 
 }
