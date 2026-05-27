@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef COMBAT_H    //if this macro isn't yet defined
+#ifndef COMBAT_H    //if this macro isn't yet defined       //not actually defined and will return and error
 #define COMBAT_H    //then now define it
 //combat.h becomes COMBAT_H
 
