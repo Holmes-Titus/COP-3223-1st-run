@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef COMBAT_H    //if this macro isn't yet defined
+#define COMBAT_H    //then now define it
+//combat.h becomes COMBAT_H
+
 int test_function(int hit1, int hit2); // prototype or decleration (names of variables are optional but preferred)
 
 int score = 0; //score is a glbal variable that can be modified anywhere
@@ -23,3 +27,5 @@ int test_function(int hit1, int hit2){ //definition (the actual work)
 
     return 0;
 }
+
+#endif COMBAT_H //end the if statement
