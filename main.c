@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "combat.h"
 
 void print_hero_stats(void);
 void print_monster_stats(void);
 void print_stats(char *name, int attack, double health, int defence, int bravery);
-double calculate_damage(int attack, int defence, int bravery);
+
 
 
 
@@ -79,14 +80,3 @@ void print_stats(char *name, int attack, double health, int defence, int bravery
 }
 
 
-double calculate_damage(int attack, int defence, int bravery) {
-
-    float defence_modifier = 0.0;
-    srand(0);
-    defence_modifier = 1 + rand()%20;
-    double adjusted_attack = attack * (1 + ((double) bravery/100));
-    double damage =  adjusted_attack - defence;
-    
-    return (damage < 0) ? 0 : damage;
-
-};
