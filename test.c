@@ -7,3 +7,6 @@ int main(void){
     printf("%p\n",p);
 
 }
+
+// * is pointer to
+// & is address of
