@@ -52,6 +52,7 @@ int main(void){
         hero_health -= calculate_damage(monster_name, monster_attack, hero_defence, 0);
         if (hero_health < 0) hero_health = 0;
         //healing potions
+        printf("%d potions remaining\n",hero_potions);
         if (hero_health && hero_potions){
             srand(time(NULL));
             int dice_roll = rand() % 100;
