@@ -97,6 +97,8 @@ int main(void){
     
     //char buf[8]; reads unlimited input
     //gets(buf); has no size check
+    // single quotes is a char, double quotes is a string
+    // 'a' a character, "a" a string
 }
 
 /* * is pointer to or go to the address of

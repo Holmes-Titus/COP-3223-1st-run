@@ -45,11 +45,11 @@ int main(void){
     do {
 
         printf("%s Attacks!\n", hero_name);
-        monster_health -= calculate_damage(hero_name, hero_attack, monster_defence, hero_bravery,1);
+        monster_health -= calculate_damage(hero_name, hero_attack, monster_defence, hero_bravery);
         
         if (monster_health < 0) monster_health = 0;
         printf("%s Counter-Attacks!\n", monster_name);
-        hero_health -= calculate_damage(monster_name, monster_attack, hero_defence, 0,0);
+        hero_health -= calculate_damage(monster_name, monster_attack, hero_defence, 0);
         if (hero_health < 0) hero_health = 0;
         //healing potions
         if (hero_health && hero_potions){

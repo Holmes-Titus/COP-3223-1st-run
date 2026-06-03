@@ -3,10 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-double calculate_damage(const char *name, int attack, int defence, int bravery, int ran) {
+int rand_incr = 0;
+
+double calculate_damage(const char *name, int attack, int defence, int bravery) {
 
     float defence_modifier = 0.0;
-    srand(time(NULL)+ran);
+    srand(time(NULL)+rand_incr);
+    rand_incr++;
     defence_modifier = 1 - (rand()%10)/100.0;
     double adjusted_attack = attack * (1 + ((double) bravery/100));
     double damage =  adjusted_attack - defence*defence_modifier;
