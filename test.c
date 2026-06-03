@@ -34,13 +34,22 @@ int *p = NULL;, safe to dereference and explicitly points to nothing
 void round_to(double *starting_value, int decimals){
     double temp = *starting_value;
     int i = 0;
-    while (i < decimals){
+    while (i < (decimals+1)){
         temp *= 10;
         i++;
     }
     
-    //double final = temp % 1;
-
+    int final = (int) temp % 10;
+    if (final >= 5){
+        temp += 10;
+    }
+        i = 0;
+    while (i < (decimals+1)){
+        temp /= 10;
+        i++;
+    }
+    *starting_value = temp;
+    printf("%.3lf and %d\n",temp,final);
 
 }
 
@@ -56,9 +65,38 @@ int main(void){
     printf("This is the new value of x: %d\n",x);
     printf("%lf\n",PI); // remember byte limits
     printf("%d\n",c);
-    double set = 27.8955;
+    double set = 27.89354;
     round_to(&set,3);
     printf("this is: %lf\n",set);
+
+
+    int matrix[3][5];   //3 rows 5 columns
+    //arrays aren't pointers, but can decay into them
+    int scores[5] = {10,20,30,40,50};
+    //no & needed, array name decays to &scores[0]
+    int *p = scores;
+    //loses knowledge of size
+
+
+    //when passing an array to a function, it immidiately decays, into integer pointers losing it's size
+    //to keep the size, calculate it beforehand and pass it through another variable
+    //becuase its a pointer, a function can modify the array elements
+
+
+    // null terminator '\0' marks the end of an string. String functions find the end by scanning for \0
+    //compiler automatically adds a null terminator
+    //string literals are read-only ex: char*p = "Hello";
+    //use char buf[] when you need a modifiable string
+    
+    //don't use == when comparing 2 strings, that compares adresses not values
+    // use strncmp instead, if the same = 0
+
+    char greeting[20] = "Hello, ";
+    char name[] = "Alice";
+    strncat(greeting,name,sizeof(greeting) - strlen(greeting) - 1);
+    
+    //char buf[8]; reads unlimited input
+    //gets(buf); has no size check
 }
 
 /* * is pointer to or go to the address of
