@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include "combat.h"
 #include <time.h>
+#include "entity.h"
 
 void print_hero_stats(void);
 void print_monster_stats(void);
-void print_stats(char *name, int attack, double health, int defence, int bravery);
+void print_stats(entity_t entity);
 
 
 
@@ -14,29 +15,44 @@ int main(void){
 
     const int potion_strength = 3;
 
-    int hero_potions = 3;
-    int magic_skill = 70;
-    int hero_bravery = 10;
-    int hero_attack = 10;
-    int hero_defence = 10;
-    double hero_health = 10.0;
-    char hero_name[50] = "Brentel";
 
-
-    int monster_bravery[] = {0,0};
-    int monster_attack[] = {7,12};
-    int monster_defence[] = {5,10};
-    int monster_health[] = {7.0,10.0};
-    char monster_name[2][50] = {
-        "Megatron", "Starscream"
+    entity_t hero = {
+    .potions = 3,
+    .magic_skill = 70,
+    .bravery = 10,
+    .attack = 10,
+    .defence = 10,
+    .current_hp = 10.0,
+    .max_hp = 10,
+    .name = "Brentel",
+    .type = HERO,
     };
 
-    /*int monster_bravery = 0;
-    int monster_attack = 12;
-    int monster_defence = 10;
-    double monster_health = 10.0;
-    char monster_name[50] = "Decepticon";
-    */
+    entity_t enemy1 = {
+    .potions = 0,
+    .magic_skill = 0,
+    .bravery = 0,
+    .attack = 10,
+    .defence = 10,
+    .current_hp = 10.0,
+    .max_hp = 10,
+    .name = "StarScream",
+    .type = ENEMY_SEEKER,
+    };
+
+    entity_t enemy2 = {
+    .potions = 0,
+    .magic_skill = 0,
+    .bravery = 0,
+    .attack = 10,
+    .defence = 10,
+    .current_hp = 10.0,
+    .max_hp = 10,
+    .name = "Frenzy",
+    .type = ENEMY_DECEPTICON,
+    };
+
+   
 
 
     printf("===================================\n");
@@ -45,12 +61,12 @@ int main(void){
     printf("|=================================|\n");
 
     printf("Enter your hero's name> ");
-    fscanf(stdin, "%s", hero_name);
+    fscanf(stdin, "%s", hero.name);
 
-    print_stats(hero_name, hero_attack, hero_health, hero_defence, hero_bravery);
-    print_stats(monster_name[0], monster_attack[0], monster_health[0], monster_defence[0], monster_bravery[0]);
+    print_stats(hero);
+    print_stats(enemy1);
 
-    for (int i=0; i < 2; i++){   
+    
     
     do {
 
@@ -58,57 +74,58 @@ int main(void){
 
         
 
-        printf("%s Attacks!\n", hero_name);
-        monster_health[i] -= calculate_damage(hero_name, hero_attack, monster_defence[i], hero_bravery);
+        printf("%s Attacks!\n", hero.name);
+        enemy1.current_hp -= calculate_damage(hero, enemy1);
         
-        if (monster_health[i] < 0) monster_health[i] = 0;
-        printf("%s Counter-Attacks!\n", monster_name[i]);
-        hero_health -= calculate_damage(monster_name[i], monster_attack[i], hero_defence, 0);
-        if (hero_health < 0) hero_health = 0;
+        if (enemy1.current_hp < 0) enemy1.current_hp = 0;
+        printf("%s Counter-Attacks!\n", enemy1.name);
+        hero.current_hp -= calculate_damage(enemy1, hero);
+        if (hero.current_hp < 0) hero.current_hp = 0;
         //healing potions
-        printf("%d potions remaining\n",hero_potions);
-        if (hero_health && hero_potions){
+        printf("%d potions remaining\n",hero.potions);
+        if (hero.current_hp && hero.potions){
             srand(time(NULL));
             int dice_roll = rand() % 100;
-            if (dice_roll < magic_skill){
-                heal(&hero_health, &hero_potions, potion_strength);
-                printf("%s Used a Health Potion!\n",hero_name);
+            if (dice_roll < hero.magic_skill){
+                heal(hero, potion_strength);
+                hero.potions --;
+                printf("%s Used a Health Potion!\n",hero.name);
             }
         }
 
-        print_stats(hero_name, hero_attack, hero_health, hero_defence, hero_bravery);
-        print_stats(monster_name[i], monster_attack[i], monster_health[i], monster_defence[i], monster_bravery[i]);
+        print_stats(hero);
+        print_stats(enemy1);
         printf("Press Enter to continue\n");
         char enter;
         fscanf(stdin, "%c", &enter);
         
 
-    } while (hero_health > 0 && monster_health[i]);
+    } while (hero.current_hp > 0 && enemy1.current_hp);
 
-    if (hero_health ==0&& (monster_health[0] == 0 || monster_health[1] == 0)){
+    if (hero.current_hp ==0&& (enemy1.current_hp == 0 || enemy1.current_hp == 0)){
         printf("DRAW!\n");
 
     }
-    else if (monster_health[0] > 0 && monster_health[1] > 0){
-        printf("%s Wins!\n", monster_health[1] ? monster_name[1] : monster_name[0]);
+    else if (enemy1.current_hp > 0 && enemy1.current_hp > 0){
+        printf("%s Wins!\n", enemy1.current_hp ? enemy1.name : enemy1.name);
     }
-    else if ( monster_health[0] > 0 || monster_health[1] > 0){
-        printf("%s and %s Win!\n", monster_name[0], monster_name[1]);
+    else if ( enemy1.current_hp > 0 || enemy1.current_hp > 0){
+        printf("%s and %s Win!\n", enemy1.name, enemy1.name);
 
     }
     else {
-        printf("%s Wins!\n", hero_name);
+        printf("%s Wins!\n", hero.name);
     }
 }
-}
 
-void print_stats(char *name, int attack, double health, int defence, int bravery){
+
+void print_stats(entity_t entity){
     printf("======================\n");
-    printf("| %-19s|\n", name);
-    if (health >= 10){  printf("| HP: %lf      |\n", health);}
-        else{printf("| HP: %lf       |\n", health);}
-    printf("| ATTACK: %d DEF: %d |\n", attack, defence);
-    if (bravery)    printf("| Bravery: %d.       |\n", bravery);
+    printf("| %-19s|\n", entity.name);
+    if (entity.current_hp >= 10){  printf("| HP: %lf      |\n", entity.current_hp);}
+        else{printf("| HP: %lf       |\n", entity.current_hp);}
+    printf("| ATTACK: %d DEF: %d |\n", entity.attack, entity.defence);
+    if (entity.bravery)    printf("| Bravery: %d.       |\n", entity.bravery);
     printf("======================\n");
 }
 

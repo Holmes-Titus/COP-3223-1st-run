@@ -17,8 +17,8 @@ struct Point { int x; int y; };
 struct Point p1;
 // both methods create struct, but second method doesn't need struct to call
 typedef struct { int x; int y; } Point1;
-Point1 p1;
-//
+Point1 p2;
+/*
 enum EnemyType {
     slime,  //0
     bat,    //1
@@ -29,7 +29,7 @@ enum EnemyType type = bulbasaur;
 if (type == bulbasaur){
     printf("A bulbasaur has appeared");
 }
-
+*/
 
 typedef enum {
     slime,  //0
@@ -37,3 +37,22 @@ typedef enum {
     bulbasaur,  //2
     goomba  //3;
 }EnemyType2;
+
+typedef struct { char* name; int enemy_hp; int enemy_max_hp; int enemy_attack; int enemy_defence; EnemyType2 type;} Enemy;
+
+//Enemy decepticon;
+
+//Enemy decepticon = {"Decepticon", 40, 40, 10, 5, bulbasaur};
+
+Enemy decepticon = {
+    .name = "Decepticon",
+    .enemy_hp = 40,
+    .enemy_max_hp = 40,
+    .enemy_attack = 10,
+    .enemy_defence = 5,
+    .type = goomba
+};
+
+printf("Name: %s\n",decepticon.name);
+
+}
