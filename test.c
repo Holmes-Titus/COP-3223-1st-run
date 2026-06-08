@@ -74,7 +74,7 @@ int main(void){
     //arrays aren't pointers, but can decay into them
     int scores[5] = {10,20,30,40,50};
     //no & needed, array name decays to &scores[0]
-    int *p = scores;
+    //int *p = scores;
     //loses knowledge of size
 
 
@@ -93,7 +93,13 @@ int main(void){
 
     char greeting[20] = "Hello, ";
     char name[] = "Alice";
-    strncat(greeting,name,sizeof(greeting) - strlen(greeting) - 1);
+    //strncat(greeting,name,sizeof(greeting) - strlen(greeting) - 1);
+/*
+    int *l;
+    int z = 10;
+    *l = z;
+    printf("this is *l: %d\n",*l);
+*/
     
     //char buf[8]; reads unlimited input
     //gets(buf); has no size check
