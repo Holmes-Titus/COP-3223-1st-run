@@ -21,4 +21,5 @@ int main(void){
     int y;
     x = y = 5;
     printf("%d is the sum of x and y\n",x+y);
+    
 }
