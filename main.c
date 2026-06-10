@@ -18,7 +18,7 @@ int main(void){
 
     entity_t hero = {
     .potions = 3,
-    .magic_skill = 70,
+    .magic_skill = 30,
     .bravery = 10,
     .attack = 10,
     .defence = 10,
@@ -87,9 +87,9 @@ int main(void){
             srand(time(NULL));
             int dice_roll = rand() % 100;
             if (dice_roll < hero.magic_skill){
-                heal(hero, potion_strength);
+                hero.current_hp = heal(hero, potion_strength);
                 hero.potions --;
-                printf("%s Used a Health Potion!\n",hero.name);
+                printf("%s used a Health Potion!\n",hero.name);
             }
         }
 

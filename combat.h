@@ -3,6 +3,6 @@
 #include "entity.h"
 
 double calculate_damage(entity_t attacker, entity_t defender);
-void heal(entity_t hero, int potion_strength);
+double heal(entity_t hero, int potion_strength);
 
 #endif
