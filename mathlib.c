@@ -31,8 +31,12 @@ int gcd(int a, int b) {
 }
 
 double average(int arr[], int len) {
-    /* TODO */
-    return 0.0;
+    double avg = 0.0;
+    if (len <=0) return 0.0;
+    for (int i = 0; i < len; i++){
+        avg += arr[i];
+    }
+    return avg / len;
 }
 
 int count_digits(long long n) {
