@@ -22,11 +22,11 @@ int main(void) {
         
         switch (choice) {
             case 1: int x,y,z;  printf("Enter value, lo, hi: ");   fscanf(stdin, "%d %d %d", &x,&y,&z);    printf("clamp(%d, %d, %d) = %d",x,y,z,clamp(x,y,z)); break;
-            case 2: int y; double w; printf("Enter base and exponent: ");   fscanf(stdin, "%lf %d", &w,&y);    printf("power(%lf, %d) = %d",w,y,power(w,y)); break;
-            case 3: int y; printf("Enter n: ");   fscanf(stdin, "%d", &y);    printf("%d is %s",y,is_prime(y)); break;
-            case 4: int x,y; printf("Enter a and b: ");   fscanf(stdin, "%d %d", &x,&y);    printf("gcd(%d, %d) = %d",x,y,gcd(x,y)); break;
-            case 5: printf("Enter count then values: ");
-            case 6: long long v; printf("Enter integer: ");   fscanf(stdin, "%lld", &v);    printf("%lld has %d digits",v,count_digits(v)); break;
+            case 2: int a; double w; printf("Enter base and exponent: ");   fscanf(stdin, "%lf %d", &w,&a);    printf("power(%.2f, %d) = %.2f",w,a,power(w,a)); break;
+            case 3: int b; printf("Enter n: ");   fscanf(stdin, "%d", &b);    if (is_prime(b)){printf("%d is prime.",b);} else {printf("%d is not prime.",b);}break;
+            case 4: int c,d; printf("Enter a and b: ");   fscanf(stdin, "%d %d", &c,&d);    printf("gcd(%d, %d) = %d",c,d,gcd(c,d)); break;
+            case 5: {int e; printf("Enter count then values: ");  fscanf(stdin, "%d", &e);  int values[e];   for (int i =0;i<e;i++) {fscanf(stdin, "%d", &values[i]);}   printf("average = %.2f",average(values,e));   break;}//in order to make this work I learned that you need braces to define an array to an unknown variable
+            case 6: long long v; printf("Enter integer: ");   fscanf(stdin, "%lld", &v);    printf("%lld has %d digits.",v,count_digits(v)); break;
             case 7: printf("Goodbye!\n");  break;
         }
 
