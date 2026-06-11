@@ -9,8 +9,13 @@ int clamp(int value, int lo, int hi) {
 }
 
 double power(double base, int exp) {
-    /* TODO */
-    return 0.0;
+    double original = base;
+    if (exp == 0) return 0.0;
+    for (int i = 0; i<(exp-1);i++){
+        base *=original;
+    }
+    if (exp > 0)  return base;
+    return (1/base);
 }
 
 int is_prime(int n) {
