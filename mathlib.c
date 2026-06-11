@@ -26,8 +26,17 @@ int is_prime(int n) {
 }
 
 int gcd(int a, int b) {
-    /* TODO */
-    return 0;
+    int dividend;
+    int divisor;
+    int remainder = 1;
+    if (a>b) {dividend = a; divisor = b;}
+    else {dividend = b; divisor = a;}
+    while (remainder > 0){
+        remainder = dividend % divisor;
+        dividend = divisor;
+        divisor = remainder;
+    }
+    return dividend;
 }
 
 double average(int arr[], int len) {
