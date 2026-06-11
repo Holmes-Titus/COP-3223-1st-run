@@ -14,8 +14,15 @@ double power(double base, int exp) {
 }
 
 int is_prime(int n) {
-    /* TODO */
-    return 0;
+    double check;
+    if (n<2) return 0;
+    for (int i =2; i<(n/2)+1;i++){
+        check = ((double)n)/i;
+        if (check == (int) check){
+            return 0;
+        }
+    }
+    return 1;
 }
 
 int gcd(int a, int b) {
@@ -29,6 +36,12 @@ double average(int arr[], int len) {
 }
 
 int count_digits(long long n) {
-    /* TODO */
-    return 0;
+    if (n==0) return 1;
+    int count = 0;
+    if (n<0) n*= (-1);
+    while (n > 0){
+        n/=10;
+        count++;
+    }
+    return count;
 }
