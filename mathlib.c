@@ -1,8 +1,11 @@
 #include "mathlib.h"
 
 int clamp(int value, int lo, int hi) {
-    /* TODO */
-    return 0;
+    if (lo<=value){
+        if (hi >= value)    return value;//if lo<=value<=hi
+        return hi;//if only lo<=value
+    }
+    return lo;//if lo>value
 }
 
 double power(double base, int exp) {
