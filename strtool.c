@@ -24,8 +24,8 @@ int main(void) {
         
         
         switch (choice) {
-            case 1: {char length[63];  printf("Enter string: "); fgets(length,sizeof(length),stdin);    printf("Length: %d\n",str_length(length)); break;}
-            case 2: {char *dst = "";char *src = ""; int dst_size = 0;  printf("Enter dst, then src, then dst size: ");   fscanf(stdin, "%63s,%63s,%d", dst,src,&dst_size);    str_copy(dst,src,dst_size); printf("string copied.\n"); break;}
+            case 1: {char length[64];  printf("Enter string: "); fgets(length,sizeof(length),stdin);    printf("Length: %d\n",str_length(length)); break;}
+            case 2: {char dst[64];char src[64]; int dst_size = 0;  printf("Enter dst: "); fgets(dst,sizeof(dst),stdin); printf("Enter src: "); fgets(src,sizeof(src),stdin);  printf("Enter dist_size: ");  fscanf(stdin, "%d", &dst_size); getchar();  str_copy(dst,src,dst_size); printf("string copied: %s\n",dst); break;}
             case 3: {char *a = "";char *b ="";  printf("Enter string: ");   fscanf(stdin, "%63s,%63s", a,b);    int result = str_compare(a,b); if (result){printf("%s comes after %s\n",a,b);} if (result < 0) {printf("%s comes before %s\n",a,b);} else{printf("%s equals %s\n",a,b);} break;}
             case 4: {char *s = ""; printf("Enter a and b: ");   fscanf(stdin, "%63s", s);  str_reverse(s);  printf("Reversed: %s\n",s); break;}
             case 5: {char *str = ""; char c=' ';   printf("Enter string and character: "); fscanf(stdin, "%63s,%c", str,&c); printf("Count: %d\n",str_count_char(str,c));   break;}
