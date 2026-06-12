@@ -7,7 +7,7 @@ int str_length(const char *s) {
     while (s[count]!= '\0'){
         count ++;
     }
-    return count;
+    return count-1;
 }
 
 void str_copy(char *dst, const char *src, int dst_size) {
