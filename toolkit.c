@@ -25,7 +25,7 @@ int main(void) {
             case 2: int a; double w; printf("Enter base and exponent: ");   fscanf(stdin, "%lf %d", &w,&a);    printf("power(%.2f, %d) = %.2f\n",w,a,power(w,a)); break;
             case 3: int b; printf("Enter n: ");   fscanf(stdin, "%d", &b);    if (is_prime(b)){printf("%d is prime.\n",b);} else {printf("%d is not prime.\n",b);}break;
             case 4: int c,d; printf("Enter a and b: ");   fscanf(stdin, "%d %d", &c,&d);    printf("gcd(%d, %d) = %d\n",c,d,gcd(c,d)); break;
-            case 5: {int e; printf("Enter count then values: ");  fscanf(stdin, "%d", &e);  int values[e];   for (int i =0;i<e;i++) {fscanf(stdin, "%d", &values[i]);}   printf("average = %.2f\n",average(values,e));   break;}//in order to make this work I learned that you need braces to define an array to an unknown variable
+            case 5: {int e; printf("Enter count then values: ");  fscanf(stdin, "%d", &e);  if (e<=0) {printf("average = 0.0\n");  break;}  int values[e];   for (int i =0;i<e;i++) {fscanf(stdin, "%d", &values[i]);}   printf("average = %.2f\n",average(values,e));   break;}//in order to make this work I learned that you need braces to define an array to an unknown variable
             case 6: long long v; printf("Enter integer: ");   fscanf(stdin, "%lld", &v);    printf("%lld has %d digits.\n",v,count_digits(v)); break;
             case 7: printf("Goodbye!\n");  break;
         }

@@ -12,9 +12,10 @@ double power(double base, int exp) {
     double original_b = base;
     if (exp == 0) return 1.00;
     if (exp > 0) {
-    for (int i = 0; i<(exp-1);i++)  base *=original_b;    return base;
+    for (int i = 0; i<(exp-1);i++){  base *=original_b;}    return base;
     }
-    for (int i = 0; i>(exp+1);i--)  base *=original_b;  return (1/base);
+    for (int i = 0; i>(exp+1);i--){  base *=original_b;}  return (1/base);
+    return 0;
 }
 
 int is_prime(int n) {
