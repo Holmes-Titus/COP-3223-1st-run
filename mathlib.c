@@ -10,7 +10,7 @@ int clamp(int value, int lo, int hi) {
 
 double power(double base, int exp) {
     double original_b = base;
-    if (exp == 0) return 0.0;
+    if (exp == 0) return 1.00;
     if (exp > 0) {
     for (int i = 0; i<(exp-1);i++)  base *=original_b;    return base;
     }
