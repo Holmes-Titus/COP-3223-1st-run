@@ -30,6 +30,12 @@ int str_compare(const char *a, const char *b) {
 
 void str_reverse(char *s) {
     /* TODO: swap characters from both ends toward the middle */
+    int len = 0;
+    while (s[len] != '\0') len ++;
+    char copy[len];
+    for (int i = 0; i < len-1; i++) {  copy[i] = s[i];  }
+    for (int j= 0; j < len-1; j++) {  s[j] = copy[len-j]; printf("%c",copy[len-j]); }
+    
 }
 
 int str_count_char(const char *s, char c) {
