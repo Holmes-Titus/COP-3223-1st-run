@@ -13,6 +13,7 @@ int str_length(const char *s) {
 void str_copy(char *dst, const char *src, int dst_size) {
     int count = 0;
     char filler[dst_size];
+    for (int i = 0; i < dst_size; i++) filler[i] = '\0';
     *dst = *filler;
     while (src[count] != '\0' && count <= dst_size -2){
         dst[count] = src[count];
@@ -34,8 +35,8 @@ void str_reverse(char *s) {
     while (s[len] != '\0') len ++;
     char copy[len];
     for (int i = 0; i < len-1; i++) {  copy[i] = s[i];  }
-    for (int j= 0; j < len-1; j++) {  s[j] = copy[len-j]; printf("%c",copy[len-j]); }
-    
+    for (int j= 1; j < len; j++) {  s[j-1] = copy[len-j-1]; }
+    s[-1] = '\0';
 }
 
 int str_count_char(const char *s, char c) {
