@@ -68,9 +68,18 @@ void str_to_upper(char *s) {
     }
 }
 
-void array_stats(const int arr[], int len,
-                 int *out_min, int *out_max, double *out_avg) {
+void array_stats(const int arr[], int len,  int *out_min, int *out_max, double *out_avg) {
     /* TODO: handle len <= 0 case; otherwise scan for min/max/sum */
+    *out_min = arr[0];
+    *out_max = arr[0];
+    for (int i=0;i<len;i++){
+        if (arr[i] < *out_min){
+            *out_min = arr[i];
+        }
+        if (arr[i] > *out_max)*out_max = arr[i];
+        *out_avg += arr[i];
+    }
+    *out_avg /= (double) len;
 }
 
 int array_find(const int arr[], int len, int target) {
