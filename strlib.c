@@ -26,6 +26,16 @@ void str_copy(char *dst, const char *src, int dst_size) {
 
 int str_compare(const char *a, const char *b) {
     /* TODO: walk both strings simultaneously, return first difference */
+    int result = 0;
+    int lena = str_length(a);
+    int lenb = str_length(b);
+    int lenmax = lena;
+    if (lenb > lenmax) lenmax = lenb;
+
+    for (int i = 0;i<lenmax;i++){
+        if (a[i] > b[i]) return 1;
+        if (a[i] < b[i]) return -1;
+    }
     return 0;
 }
 
