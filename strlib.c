@@ -84,5 +84,8 @@ void array_stats(const int arr[], int len,  int *out_min, int *out_max, double *
 
 int array_find(const int arr[], int len, int target) {
     /* TODO: linear scan; return index or -1 */
+    for (int i = 0;i < len; i++){
+        if (arr[i] == target) return i;
+    }
     return -1;
 }
