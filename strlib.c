@@ -26,7 +26,6 @@ void str_copy(char *dst, const char *src, int dst_size) {
 
 int str_compare(const char *a, const char *b) {
     /* TODO: walk both strings simultaneously, return first difference */
-    int result = 0;
     int lena = str_length(a);
     int lenb = str_length(b);
     int lenmax = lena;
@@ -51,11 +50,22 @@ void str_reverse(char *s) {
 
 int str_count_char(const char *s, char c) {
     /* TODO */
-    return 0;
+    int tracker = 0;
+    int count = 0;
+    while (s[count]!= '\0'){
+        if (s[count] == c) tracker++;
+    count ++;
+    }
+    return tracker;
 }
 
 void str_to_upper(char *s) {
     /* TODO: for each char, if 'a' <= c <= 'z', subtract 32 */
+    int count = 0;
+    while (s[count]!= '\0'){
+        if ('a' <= s[count] && s[count] <= 'z') s[count] -= 32;
+    count ++;
+    }
 }
 
 void array_stats(const int arr[], int len,
