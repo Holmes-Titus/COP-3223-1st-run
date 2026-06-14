@@ -12,10 +12,13 @@ int str_length(const char *s) {
 
 void str_copy(char *dst, const char *src, int dst_size) {
     int count = 0;
+    char blank[dst_size];
+    dst = blank;
     while (src[count] != '\0' && count <= dst_size -1){
         dst[count] = src[count];
         count++;
     }
+    dst[-1] = '\0';
     /* TODO: copy characters one at a time, stop at dst_size-1 or '\0' */
     /* Always null-terminate dst */
 }
