@@ -20,7 +20,8 @@ int main(void){
     FILE is a struct of information about the file
     Think of FILE * like a tv remote of controlling the device
 
-    */
+    
+    fprintf(stderr,"an error has not occured\n");
 
     FILE *fp = NULL;
     //remember fp is just a pointer, and fp is a generic name
@@ -36,6 +37,8 @@ int main(void){
         perror("fopen failed");
         return 1;
     }
+    fclose(fp);
+    */
 
     // checks open files in a open files table
     //reading and writing from the console,screen, and errors are files
@@ -57,5 +60,64 @@ int main(void){
 
 
 
+
+    /*
+    everything after the program name is a command-line arguments
+    shell splits on whitespace and passes to main
+    input.txt
+    output.txt
+    the command-line arguments are the .txt
+    arguments always arrive as strings
+    name of program and arguments are passed
+
+    $ ./myprogram input.txt output.txt
+
+    int main(int argc, char *argv[])
+    argc-> argument count, always >=1
+    argv-> argument vector, array of strings
+    argc = 3
+
+    argv[0] = "./myprogram\0"
+    argv[1] = input.txt
+    argv[2] = output.txt
+    argv[3] = NULL   //sentinel
+    argv[0] is program name
+    argv[argc] is NULL
+
+    always check argc for the proper count
+    always print usage to stderr, not stdout
+
+    atoi (ascii to integer)
+    int n = atoi(argv[1]);
+    atoi only returns alphanumerics
+    long v = strtol("42abc", &end,10);  10 is lenght of integer
+    if *end != '\0' then an error in the input
+
+
+    ./sort -r -n input.txt
+
+    == works with numbers and individual characters
+
+
+    #include <unistd.h>
+
+    scripts can chain with ./prog and ./next
+    macros insure portability
+
+    atexit() tells the program to do something at exit or return
+
+
+    getenv() gets an environment variable that are set in memory
+
+    never trust argv, always validate it
+    don't assume file name has no spaces
+    allways code defensively
+    argc includes program name and sentinel
+    
+
+    */
+   int EXIT_SUCCESS = 0;
+    return 0;
+    exit(EXIT_SUCCESS);
 
 }
