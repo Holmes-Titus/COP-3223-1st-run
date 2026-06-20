@@ -1,5 +1,6 @@
 #ifndef ROSTER_H
 #define ROSTER_H
+#define MAX_STUDENTS 50
 
 typedef enum {
     GRADE_A,
@@ -18,7 +19,7 @@ typedef struct {
     Grade  standing;        /* current letter grade standing */
 } Student;
 
-#define MAX_STUDENTS 50
+
 
 typedef struct {
     Student students[MAX_STUDENTS];
