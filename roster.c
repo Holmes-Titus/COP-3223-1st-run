@@ -22,8 +22,7 @@ Student create_student(const char *first, const char *last, int id, double gpa){
 int roster_add(Roster *r, Student s){
     if ((*r).count == MAX_STUDENTS) return 0;
     if (roster_find_by_id(r,s.student_id) == NULL) return -1;
-    int count = 0;
-
+    (*r).students[(*r).count] = s;
 }
 
 int roster_remove(Roster *r, int student_id){
