@@ -5,8 +5,8 @@
 Student create_student(const char *first, const char *last, int id, double gpa){
     
     Student new_student = {
-        .first_name = first,
-        .last_name = last,
+        .first_name = *first,
+        .last_name = *last,
         .student_id = id,
         .gpa = gpa
     };
@@ -20,7 +20,10 @@ Student create_student(const char *first, const char *last, int id, double gpa){
 }
 
 int roster_add(Roster *r, Student s){
-    
+    if ((*r).count == MAX_STUDENTS) return 0;
+    if (roster_find_by_id(r,s.student_id) == NULL) return -1;
+    int count = 0;
+
 }
 
 int roster_remove(Roster *r, int student_id){
