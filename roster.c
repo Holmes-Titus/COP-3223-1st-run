@@ -4,10 +4,9 @@
 
 
 Student create_student(const char *first, const char *last, int id, double gpa){
-    
     Student new_student = {
-        .first_name = *first,
-        .last_name = *last,
+        .first_name = {*first},
+        .last_name = {*last},
         .student_id = id,
         .gpa = gpa
     };
@@ -24,6 +23,7 @@ int roster_add(Roster *r, Student s){
     if ((*r).count == MAX_STUDENTS) return 0;
     if (roster_find_by_id(r,s.student_id) == NULL) return -1;
     (*r).students[(*r).count] = s;
+    return 1;
 }
 
 int roster_remove(Roster *r, int student_id){
@@ -86,7 +86,7 @@ void print_roster(const Roster *r){
     for (int i = 0; i < (*r).count; i++){
         print_student(&(*r).students[i]);
     }
-    printf("╠══════════════════════════════════════════════════╣\n║  Class average GPA: %.2f        fill here        ║\n╚══════════════════════════════════════════════════╝\n",roster_average_gpa(&r));
+    printf("╠══════════════════════════════════════════════════╣\n║  Class average GPA: %.2f        fill here        ║\n╚══════════════════════════════════════════════════╝\n",roster_average_gpa(r));
 }
 
 const char *grade_to_string(Grade g){
