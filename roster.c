@@ -48,7 +48,7 @@ Student *roster_find_by_id(Roster *r, int student_id){
 
 Student *roster_find_by_name(Roster *r, const char *last_name){
     for (int i = 0; i < (*r).count; i++){
-        if ((*r).students[i].last_name == last_name){
+        if (strcmp((*r).students[i].last_name,last_name) == 0){
             return &(*r).students[i];
         }
     }
@@ -83,7 +83,7 @@ void roster_sort_by_gpa(Roster *r){
     }
 }
 void print_student(const Student *s){
-    printf("[%d] %s, %s fill here     GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
+    printf("[%d] %s, %s            GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
 }
 
 void print_roster(const Roster *r){

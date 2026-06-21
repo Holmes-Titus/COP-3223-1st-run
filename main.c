@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "roster.h"
 
 Roster students;
@@ -28,8 +29,10 @@ int main(void){
                 double gpa = 0.0;
                 printf("First Name: ");
                 fgets(first,sizeof(first),stdin);
+                first[strcspn(first,"\n")] = '\0';
                 printf("Last Name: ");
                 fgets(last,sizeof(last),stdin);
+                last[strcspn(last,"\n")] = '\0';
                 printf("Student ID: ");
                 fscanf(stdin,"%d",&id);
                 getchar();
@@ -61,8 +64,9 @@ int main(void){
                 break;}
             case 4: {
                 char last[63];
-                printf("Enter Last name: ");
+                printf("Enter last name: ");
                 fgets(last,sizeof(last),stdin);
+                last[strcspn(last,"\n")] = '\0';
                 if (roster_find_by_name(&students,last) == NULL) printf("Student Not Found\n");
                 else print_student(roster_find_by_name(&students,last));
                 break;}
