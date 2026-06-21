@@ -23,8 +23,8 @@ int main(void){
 
         switch (choice) {
             case 1: {  
-                char first[63];
-                char last[63];
+                char first[32];
+                char last[32];
                 int id = 0;
                 double gpa = 0.0;
                 printf("First Name: ");
@@ -63,7 +63,7 @@ int main(void){
                 else print_student(roster_find_by_id(&students,id));
                 break;}
             case 4: {
-                char last[63];
+                char last[32];
                 printf("Enter last name: ");
                 fgets(last,sizeof(last),stdin);
                 last[strcspn(last,"\n")] = '\0';
