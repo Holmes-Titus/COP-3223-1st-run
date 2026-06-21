@@ -32,9 +32,16 @@ int roster_add(Roster *r, Student s){
 }
 
 int roster_remove(Roster *r, int student_id){
-    Student *s = roster_find_by_id(r,student_id);
-    if (s != NULL){ s = NULL; return 1;}
-    return 0;
+    if (roster_find_by_id(r,student_id)==NULL) return 0;
+    for (int i = 0; i < (*r).count; i++){
+        if ((*r).students[i].student_id == student_id){
+            for (int j = i; j < (*r).count-i;j++){
+                (*r).students[i] = (*r).students[i+1];
+            }
+        }
+    }
+    (*r).count--;
+    return 1;
 }
 
 Student *roster_find_by_id(Roster *r, int student_id){
@@ -83,11 +90,11 @@ void roster_sort_by_gpa(Roster *r){
     }
 }
 void print_student(const Student *s){
-    printf("[%d] %s, %s            GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
+    printf("  [%d] %s, %s  GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
 }
 
 void print_roster(const Roster *r){
-    printf("╔══════════════════════════════════════════════════╗\n║  Student Roster (%d students)                   ║\n╠══════════════════════════════════════════════════╣\n",(*r).count);
+    printf("╔══════════════════════════════════════════════════╗\n║  Student Roster (%d students)                     ║\n╠══════════════════════════════════════════════════╣\n",(*r).count);
     for (int i = 0; i < (*r).count; i++){
         print_student(&(*r).students[i]);
     }
