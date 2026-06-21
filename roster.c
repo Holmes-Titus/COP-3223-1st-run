@@ -28,7 +28,7 @@ int roster_add(Roster *r, Student s){
 
 int roster_remove(Roster *r, int student_id){
     Student *s = roster_find_by_id(r,student_id);
-    if (s != NULL) s = NULL; return 1;
+    if (s != NULL){ s = NULL; return 1;}
     return 0;
 }
 
@@ -78,7 +78,7 @@ void roster_sort_by_gpa(Roster *r){
     }
 }
 void print_student(const Student *s){
-    printf("[%d] %s, %s fill here     GPA: %.2f Standing: %s",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
+    printf("[%d] %s, %s fill here     GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
 }
 
 void print_roster(const Roster *r){

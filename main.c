@@ -1,26 +1,48 @@
 #include <stdio.h>
 #include "roster.h"
 
+Roster students;
+
 int get_validated_int(int min, int max, const char *prompt, const char *err);
 
 int main(void){
     int choice;
     do {
-        printf("\n= String & Array Toolkit =\n");
-        printf("1. String length\n");
-        printf("2. String copy (with truncation demo)\n");
-        printf("3. String compare\n");
-        printf("4. Reverse a string\n");
-        printf("5. Count a character\n");
-        printf("6. Convert to uppercase\n");
-        printf("7. Array stats (min/max/avg)\n");
+        printf("\n= Student Roster System =\n");
+        printf("1. Add student\n");
+        printf("2. Remove student (by ID)\n");
+        printf("3. Find student (by ID)\n");
+        printf("4. Find student (by last name)\n");
+        printf("5. Sort by name\n");
+        printf("6. Sort by GPA\n");
+        printf("7. Print roster\n");
         printf("8. Quit\n");
 
         choice = get_validated_int(1, 8, "Enter choice (1-8): ", "Invalid choice. Try again.");
 
         switch (choice) {
-            case 1: {Roster r;  Student s;  int success = roster_add(&r,s); break;}
-            case 2: {Roster r;  int id;  int success = roster_remove(&r,id); break;}
+            case 1: {  
+                char first[63];
+                char last[63];
+                int id = 0;
+                double gpa = 0.0;
+                printf("First Name: ");
+                fgets(first,sizeof(first),stdin);
+                printf("Lat Name: ");
+                fgets(last,sizeof(last),stdin);
+                printf("Student ID: ");
+                fscanf(stdin,"%d",&id);
+                getchar();
+                printf("GPA: ");
+                fscanf(stdin,"%lf",&gpa);
+                getchar();
+                Student s = create_student(first, last, id, gpa);
+                int success = roster_add(&students,s); 
+                if (success == 1) printf("Roster Full, Student Not Added.\n");
+                if (success == 0) printf("Student added.\n");
+                if (success == -1) printf("ID Already Exists, Student Not Added.\n");
+                break;}
+            case 2: {break;}
             case 3: {break;}
             case 4: {break;}
             case 5: {break;}
