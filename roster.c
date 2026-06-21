@@ -1,5 +1,6 @@
 #include "roster.h"
 #include <stdio.h>
+#include <string.h>
 
 
 Student create_student(const char *first, const char *last, int id, double gpa){
@@ -26,7 +27,9 @@ int roster_add(Roster *r, Student s){
 }
 
 int roster_remove(Roster *r, int student_id){
-    
+    Student *s = roster_find_by_id(r,student_id);
+    if (s != NULL) s = NULL; return 1;
+    return 0;
 }
 
 Student *roster_find_by_id(Roster *r, int student_id){
@@ -39,16 +42,40 @@ Student *roster_find_by_id(Roster *r, int student_id){
 }
 
 Student *roster_find_by_name(Roster *r, const char *last_name){
-
+    for (int i = 0; i < (*r).count; i++){
+        if ((*r).students[i].last_name == last_name){
+            return &(*r).students[i];
+        }
+    }
+    return NULL;
 }
 
 void roster_sort_by_name(Roster *r){
-
+    int count = (*r).count;
+    while (count > 0){
+        for (int i = 0; i < (*r).count-1;i++){
+            if ((strcmp((*r).students[i].last_name,(*r).students[i+1].last_name)) > 0){
+                Student temp = (*r).students[i+1];
+                (*r).students[i+1] = (*r).students[i];
+                (*r).students[i] = temp;
+            }
+        }
+        count ++;
+    }
 }
 
 void roster_sort_by_gpa(Roster *r){
-
-
+    int count = (*r).count;
+    while (count > 0){
+        for (int i = 0; i < (*r).count-1;i++){
+            if (((*r).students[i].gpa>(*r).students[i+1].gpa)){
+                Student temp = (*r).students[i+1];
+                (*r).students[i+1] = (*r).students[i];
+                (*r).students[i] = temp;
+            }
+        }
+        count ++;
+    }
 }
 void print_student(const Student *s){
     printf("[%d] %s, %s fill here     GPA: %.2f Standing: %s",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
@@ -74,5 +101,11 @@ const char *grade_to_string(Grade g){
 }
 
 double roster_average_gpa(const Roster *r){
-
+    double avg = 0.0;
+    if ((*r).count == 0) return 0.0;
+    for (int i = 0; i < (*r).count; i++){
+        avg += (*r).students[i].gpa;
+    }
+    avg /= (*r).count;
+    return avg;
 }
