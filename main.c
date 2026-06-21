@@ -42,12 +42,33 @@ int main(void){
                 if (success == 1) printf("Student added.\n");
                 if (success == -1) printf("ID Already Exists, Student Not Added.\n");
                 break;}
-            case 2: {break;}
-            case 3: {break;}
-            case 4: {break;}
-            case 5: {break;}
-            case 6: {break;}
-            case 7: {break;}
+            case 2: {
+                int id = 0;
+                printf("Enter student ID: ");
+                fscanf(stdin,"%d",&id);
+                int success = roster_remove(&students,id);
+                if (success == 0) printf("Student Not Found\n");
+                if (success == 1) printf("Student removed.\n");
+                break;}
+            case 3: {
+                int id = 0;
+                printf("Enter student ID: ");
+                fscanf(stdin,"%d",&id);
+                if (roster_find_by_id(&students,id) == NULL) printf("Student Not Found\n");
+                else print_student(roster_find_by_id(&students,id));
+                break;}
+            case 4: {
+
+                break;}
+            case 5: {
+
+                break;}
+            case 6: {
+
+                break;}
+            case 7: {
+
+                break;}
             case 8: {printf("Goodbye!\n");  break;}
         }
 

@@ -5,11 +5,13 @@
 
 Student create_student(const char *first, const char *last, int id, double gpa){
     Student new_student = {
-        .first_name = {*first},
-        .last_name = {*last},
         .student_id = id,
         .gpa = gpa
     };
+    strcpy(new_student.first_name,first);
+    new_student.first_name[strcspn(new_student.first_name,"\n")] = '\0';
+    strcpy(new_student.last_name,last);
+    new_student.last_name[strcspn(new_student.last_name,"\n")] = '\0';
     if (gpa > 4 || gpa < 0) new_student.standing = GRADE_INVALID;
     else if (gpa >= 3.5) new_student.standing = GRADE_A;
     else if (gpa >= 3) new_student.standing = GRADE_B;
@@ -85,11 +87,11 @@ void print_student(const Student *s){
 }
 
 void print_roster(const Roster *r){
-    printf("╔══════════════════════════════════════════════════╗\n║  Student Roster (%d students)     fill here    ║\n╠══════════════════════════════════════════════════╣\n",(*r).count);
+    printf("╔══════════════════════════════════════════════════╗\n║  Student Roster (%d students)               ║\n╠══════════════════════════════════════════════════╣\n",(*r).count);
     for (int i = 0; i < (*r).count; i++){
         print_student(&(*r).students[i]);
     }
-    printf("╠══════════════════════════════════════════════════╣\n║  Class average GPA: %.2f        fill here        ║\n╚══════════════════════════════════════════════════╝\n",roster_average_gpa(r));
+    printf("╠══════════════════════════════════════════════════╣\n║  Class average GPA: %.2f                        ║\n╚══════════════════════════════════════════════════╝\n",roster_average_gpa(r));
 }
 
 const char *grade_to_string(Grade g){
