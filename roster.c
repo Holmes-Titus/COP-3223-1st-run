@@ -65,7 +65,7 @@ void roster_sort_by_name(Roster *r){
                 (*r).students[i] = temp;
             }
         }
-        count ++;
+        count --;
     }
 }
 
@@ -73,13 +73,13 @@ void roster_sort_by_gpa(Roster *r){
     int count = (*r).count;
     while (count > 0){
         for (int i = 0; i < (*r).count-1;i++){
-            if (((*r).students[i].gpa>(*r).students[i+1].gpa)){
+            if (((*r).students[i].gpa<(*r).students[i+1].gpa)){
                 Student temp = (*r).students[i+1];
                 (*r).students[i+1] = (*r).students[i];
                 (*r).students[i] = temp;
             }
         }
-        count ++;
+        count --;
     }
 }
 void print_student(const Student *s){
@@ -87,11 +87,11 @@ void print_student(const Student *s){
 }
 
 void print_roster(const Roster *r){
-    printf("╔══════════════════════════════════════════════════╗\n║  Student Roster (%d students)               ║\n╠══════════════════════════════════════════════════╣\n",(*r).count);
+    printf("╔══════════════════════════════════════════════════╗\n║  Student Roster (%d students)                   ║\n╠══════════════════════════════════════════════════╣\n",(*r).count);
     for (int i = 0; i < (*r).count; i++){
         print_student(&(*r).students[i]);
     }
-    printf("╠══════════════════════════════════════════════════╣\n║  Class average GPA: %.2f                        ║\n╚══════════════════════════════════════════════════╝\n",roster_average_gpa(r));
+    printf("╠══════════════════════════════════════════════════╣\n║  Class average GPA: %.2f                         ║\n╚══════════════════════════════════════════════════╝\n",roster_average_gpa(r));
 }
 
 const char *grade_to_string(Grade g){

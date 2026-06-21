@@ -71,13 +71,13 @@ int main(void){
                 else print_student(roster_find_by_name(&students,last));
                 break;}
             case 5: {
-
+                roster_sort_by_name(&students);
                 break;}
             case 6: {
-
+                roster_sort_by_gpa(&students);
                 break;}
             case 7: {
-
+                print_roster(&students);
                 break;}
             case 8: {printf("Goodbye!\n");  break;}
         }
