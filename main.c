@@ -28,7 +28,7 @@ int main(void){
                 double gpa = 0.0;
                 printf("First Name: ");
                 fgets(first,sizeof(first),stdin);
-                printf("Lat Name: ");
+                printf("Last Name: ");
                 fgets(last,sizeof(last),stdin);
                 printf("Student ID: ");
                 fscanf(stdin,"%d",&id);
@@ -38,8 +38,8 @@ int main(void){
                 getchar();
                 Student s = create_student(first, last, id, gpa);
                 int success = roster_add(&students,s); 
-                if (success == 1) printf("Roster Full, Student Not Added.\n");
-                if (success == 0) printf("Student added.\n");
+                if (success == 0) printf("Roster Full, Student Not Added.\n");
+                if (success == 1) printf("Student added.\n");
                 if (success == -1) printf("ID Already Exists, Student Not Added.\n");
                 break;}
             case 2: {break;}
