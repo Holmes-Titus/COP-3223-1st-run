@@ -26,11 +26,16 @@ int roster_add(Roster *r, Student s){
 }
 
 int roster_remove(Roster *r, int student_id){
-
+    
 }
 
 Student *roster_find_by_id(Roster *r, int student_id){
-
+    for (int i = 0; i < (*r).count; i++){
+        if ((*r).students[i].student_id == student_id){
+            return &(*r).students[i];
+        }
+    }
+    return NULL;
 }
 
 Student *roster_find_by_name(Roster *r, const char *last_name){
@@ -46,7 +51,7 @@ void roster_sort_by_gpa(Roster *r){
 
 }
 void print_student(const Student *s){
-    printf("[%d] %s, %s fill here     GPA: %.2f Standing: %c",s->student_id,s->last_name,s->first_name,s->gpa,s->standing);
+    printf("[%d] %s, %s fill here     GPA: %.2f Standing: %s",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
 }
 
 void print_roster(const Roster *r){
@@ -58,7 +63,14 @@ void print_roster(const Roster *r){
 }
 
 const char *grade_to_string(Grade g){
-
+    switch(g){
+        case 0: return "A";
+        case 1: return "B";
+        case 2: return "C";
+        case 3: return "D";
+        case 4: return "F";
+        default: return "Incomplete";
+    }
 }
 
 double roster_average_gpa(const Roster *r){
