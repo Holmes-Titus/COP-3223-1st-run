@@ -46,6 +46,7 @@ int main(void){
                 int id = 0;
                 printf("Enter student ID: ");
                 fscanf(stdin,"%d",&id);
+                getchar();
                 int success = roster_remove(&students,id);
                 if (success == 0) printf("Student Not Found\n");
                 if (success == 1) printf("Student removed.\n");
@@ -54,11 +55,16 @@ int main(void){
                 int id = 0;
                 printf("Enter student ID: ");
                 fscanf(stdin,"%d",&id);
+                getchar();
                 if (roster_find_by_id(&students,id) == NULL) printf("Student Not Found\n");
                 else print_student(roster_find_by_id(&students,id));
                 break;}
             case 4: {
-
+                char last[63];
+                printf("Enter Last name: ");
+                fgets(last,sizeof(last),stdin);
+                if (roster_find_by_name(&students,last) == NULL) printf("Student Not Found\n");
+                else print_student(roster_find_by_name(&students,last));
                 break;}
             case 5: {
 
