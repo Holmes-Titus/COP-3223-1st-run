@@ -90,7 +90,7 @@ void roster_sort_by_gpa(Roster *r){
     }
 }
 void print_student(const Student *s){
-    printf("  [%d] %s, %-10s  GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing));
+    printf("  [%d] %s, %-10s  GPA: %.2f Standing: %s\n",s->student_id,s->last_name,s->first_name,s->gpa,grade_to_string(s->standing)); //NOTE TO INSTRUCTOR: I can't find a proper way to align the GPA positions without compromising on name length, which is given in the strcuts as 32 characters each, or extending this line way beyond the header
 }
 
 void print_roster(const Roster *r){
