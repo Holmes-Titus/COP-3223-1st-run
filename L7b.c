@@ -19,8 +19,28 @@ int main(void){
     you can declare anything in the heap
     tne stack is automatic storage, where the compiler cotrols the memory
     don't worry about the stack except overloading it
+
+    Use temp arrays in order to prevent memory loss if realloc fails
+    
     
     */
 
+    int len = 0;
+    printf("%d\n",len++);
+    printf("%d\n",len++);
+    len++;
+    printf("%d\n",++len);
+
+
+    //  free each row before freeing the array itself
+    /*
+    Memory leak, malloc without free
+    Double free, 2 frees on one pointer
+    Use after free, Dereferencing after free
+    Buffer overflow, Writing past the end of allocation
+    Unititialized read, Using malloc'd memory before writing
+    Freeing stack memory, free on a non-heap pointer
+    
+    */
 
     return 1;}
