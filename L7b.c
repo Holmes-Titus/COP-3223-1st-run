@@ -4,7 +4,23 @@
 
 int main(void){
 
+    //Pointers pointers pointers
+
+    //why malloc?
+    /*
+    no room for growth in the stack
+    saves the state or statframe (what function it is within)
+    you must give array length as space needs to be allocated ahead of time
+    stack has stack pointers, that move as we pull/push stack frames
+    typically the array elements are contiguous in memory
+    if you tried to modify the array length then it would mess up the stack pointer
+    The heap on the otherhand lets you manually change th ememory allocation
+    too much information can blow the stack
+    you can declare anything in the heap
+    tne stack is automatic storage, where the compiler cotrols the memory
+    don't worry about the stack except overloading it
     
+    */
 
 
-    return 1;}
+    return -1;}

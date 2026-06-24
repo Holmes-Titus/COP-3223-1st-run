@@ -76,6 +76,6 @@ int main(void){
 
     //a void pointer is a memory adress of no type
     //usually involves type casting
-    
+     
 
 }
