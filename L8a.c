@@ -44,6 +44,28 @@ Node *append(Node *head, int data){
     return head;
 }
 
+//traverse through the linked list and print the values
+void list_print(Node *head) {
+    Node *cur = head;
+    while (cur != NULL) {
+        printf("%d", cur->data);
+        if (cur->next != NULL)  printf(" -> ");
+        cur = cur->next;
+    }
+    printf(" -> NULL\n");
+}
+
+void list_free(Node *head) {
+    Node *cur = head;
+    Node *next_node;
+    while (cur != NULL) {
+        /* Save next BEFORE free */
+        next_node = cur->next;
+        free(cur);
+        cur = next_node;
+    }
+}
+
 int main(void){
 
     //Big O notations (the preformance of algorithms)
@@ -99,9 +121,23 @@ int main(void){
     //n is now the head of the linked list, of value [10|NULL]
 
     //the head pointer is th only way into the list, lose it and the list is leaked
+    //thus never advance the head during traversal or the entire linked list will be leaked
 
     //Prepend (adding to the front of the list)
 
+
+    head = prepend(head, 20);
+    head = prepend(head, 30);
+    head = prepend(head, 40);
+    head = prepend(head, 50);
+    head = prepend(head, 60);
+    head = prepend(head, 70);
+    head = prepend(head, 80);
+    head = prepend(head, 90);
+    head = prepend(head, 100);
+
+    list_print(head);
+    list_free(head);
 
 
 
