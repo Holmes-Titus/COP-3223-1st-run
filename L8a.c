@@ -67,6 +67,48 @@ void list_free(Node *head) {
     }
 }
 
+Node *list_search(Node *head, int target){
+    Node *cur = head;
+    while (cur != NULL) {
+        if (cur->data == target)    return cur;
+        cur = cur->next;
+    }
+    return NULL;
+}
+
+
+Node *delete_front(Node *head) {
+    if (head == NULL)   return NULL;
+    Node *old = head;
+    head = head->next;
+    free(old);
+    old = NULL;
+    return head;
+}
+
+
+Node *list_delete(Node *head, int target){
+    /* Empty list */
+    if (!head) return NULL;
+    /* Target is at head */
+    if (head->data == target) {
+        Node *tmp = head->next;
+        free(head);
+        return tmp;
+    }
+    Node *cur = head;
+    while (cur->next != NULL) {
+        if (cur->next->data== target) {
+            Node *del = cur->next;
+            cur->next = del->next;
+            free(del);
+            return head;
+        }
+        cur = cur->next;
+    }
+    return head; /* not found */
+}
+
 int main(void){
 
     //Big O notations (the preformance of algorithms)
