@@ -21,6 +21,7 @@ Node *node_create(int data) {
 }
 
 //function to add a new node of given data to the front of the linked list
+//because it is only 2 pointer assignments it is always O(1)
 Node *prepend(Node *head, int data){
     Node *n = node_create(data);
     if (n == NULL) return head;
