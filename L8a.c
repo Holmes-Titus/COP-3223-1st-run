@@ -32,6 +32,7 @@ Node *prepend(Node *head, int data){
 }
 
 //this function adds a node to the end of the linked list, O(N) in time as it needs to iterate through the linked list
+//one way to work around this is storing the length SEPERATELY
 Node *append(Node *head, int data){
     Node *n = node_create(data);
     if (n == NULL) return head;
